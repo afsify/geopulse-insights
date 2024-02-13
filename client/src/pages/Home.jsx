@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Column, Pie } from "@ant-design/plots";
 import { TeamOutlined } from "@ant-design/icons";
 import { Card, Progress, Statistic } from "antd";
@@ -68,6 +68,7 @@ const Home = () => {
           { name: "World", population: totalWorldPopulation },
         ]);
       } catch (error) {
+        dispatch(hideLoading());
         toast.error("Something went wrong");
       }
     };
@@ -105,7 +106,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <Fragment>
       <div className="fixed top-4 left-4 z-50">
         <Dropdown />
       </div>
@@ -130,7 +131,7 @@ const Home = () => {
         <h2 className="text-3xl font-semibold mb-5">
           World Population Overview
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {countryData.map((country) => (
             <Card
               key={country.name}
@@ -158,7 +159,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

@@ -33,6 +33,7 @@ function Country() {
         setCountryData(formattedData);
         setLoading(false);
       } catch (error) {
+        dispatch(hideLoading());
         toast.error("Something went wrong");
       }
     };
@@ -87,7 +88,7 @@ function Country() {
   };
 
   return (
-    <div className="container">
+    <Fragment>
       <div className="fixed top-4 left-4 z-50">
         <Dropdown />
       </div>
@@ -148,7 +149,7 @@ function Country() {
           </Fragment>
         )}
       </div>
-    </div>
+    </Fragment>
   );
 }
 
