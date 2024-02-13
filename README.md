@@ -25,7 +25,6 @@ Welcome to GeoPulse, your comprehensive platform for exploring and analyzing cou
 **HTTP Client:**
 
 - **Axios:** A promise-based HTTP client for making requests to APIs. Axios is used to interact with the server-side API.
-
 - **Fetch API:** A modern browser interface for fetching resources, used to interact with the REST Countries API.
 
 ### Server-Side Technologies
@@ -76,12 +75,6 @@ The live project can be accessed at [https://geopulse.vercel.app](https://geopul
     ```
 
 5. **Start the client-side application:**
-
-    ```bash
-    npm start
-    ```
-
-6. **Start the client-side application:**
 
     ```bash
     npm start
