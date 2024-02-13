@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { userPath } from "../routes/routeConfig";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Settings = () => {
           <Menu
             mode="vertical"
             defaultSelectedKeys={["settings"]}
-            style={{ height: "100%", borderRight: 0 }}
+            style={{ borderRight: 0 }}
             className="mt-16"
           >
             <Menu.Item
@@ -56,8 +56,7 @@ const Settings = () => {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ padding: 0 }} />
-          <Content style={{ margin: "0 16px" }}>
+          <Content className="mx-4 mt-4">
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item
                 className="cursor-pointer"
@@ -71,7 +70,7 @@ const Settings = () => {
               title={
                 <h1 className="text-2xl font-semibold">Account Settings</h1>
               }
-              className="w-full mx-auto md:p-5"
+              className="w-full mx-auto md:px-5 pt-4"
             >
               <div className="flex items-center justify-center max-w-md">
                 <Form

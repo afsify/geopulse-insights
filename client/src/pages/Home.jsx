@@ -128,9 +128,11 @@ const Home = () => {
         </Card>
       </div>
       <div className="p-5 mt-4">
-        <h2 className="text-3xl font-semibold mb-5">
-          World Population Overview
-        </h2>
+        <Card bordered={false} className="mb-4">
+          <h2 className="text-3xl font-semibold">
+            World Population Overview
+          </h2>
+        </Card>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {countryData.map((country) => (
             <Card
