@@ -4,31 +4,13 @@ Welcome to GeoPulse, your comprehensive platform for exploring and analyzing cou
 
 ## Features
 
-## User Authentication and Authorization
-
 - **Secure Authentication:** Users can log in and sign in with Google for a secure and personalized experience.
 - **Role-Based Authentication:** Differentiate between admin and user roles for tailored access and permissions.
-
-## Dashboard with Charts
-
 - **Informative Charts:** Explore country data through visually appealing charts, including bar charts, pie charts, and gauge charts.
-
-## Profile Page
-
 - **User Profile** View and edit user profiles with ease.
-
-## Settings Page
-
 - **Personalized Settings:** Adjust account settings, including preferences for notifications and language.
-
-## Country Page
-
 - **Comprehensive Country Information:** Access detailed information about countries, including flags and specific details.
-
 - **Search and Filter:** Easily search and filter country data for a customized view.
-
-## State Management
-
 - **Redux Toolkit Integration:** Manage global state efficiently using Redux for seamless data flow.
 
 ## Tools and Technologies
