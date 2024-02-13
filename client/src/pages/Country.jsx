@@ -92,7 +92,9 @@ function Country() {
         <Dropdown />
       </div>
       <div className="flex flex-col items-center p-4">
-        <h2 className="text-3xl font-semibold text-steel-blue mt-8">Countries</h2>
+        <h2 className="text-3xl font-semibold text-steel-blue mt-8">
+          Countries
+        </h2>
         <div className="flex justify-between mb-4 w-full mt-4">
           <Select
             size="large"

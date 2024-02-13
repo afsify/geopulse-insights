@@ -1,8 +1,9 @@
-import { Card } from "antd";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Column, Pie } from "@ant-design/plots";
+import { TeamOutlined } from "@ant-design/icons";
+import { Card, Progress, Statistic } from "antd";
 import Dropdown from "../components/user/Dropdown";
 import { getAllCountries } from "../api/countries";
 import { getUser } from "../api/services/userService";
@@ -11,6 +12,7 @@ import { showLoading, hideLoading } from "../utils/alertSlice";
 const Home = () => {
   const dispatch = useDispatch();
   const [countryData, setCountryData] = useState([]);
+  const [worldPopulation, setWorldPopulation] = useState(0);
   const logged = localStorage.getItem("userToken") !== null;
 
   useEffect(() => {
@@ -38,15 +40,33 @@ const Home = () => {
         dispatch(hideLoading());
         const sortedData = data.sort((a, b) => b.population - a.population);
         const top10Data = sortedData.slice(0, 10);
+        const otherCountriesData = sortedData.slice(10);
         const formattedData = top10Data.map((country) => ({
           name: country.name.common,
           population: country.population,
           area: country.area,
-          languages: Object.values(country.languages).join(", "),
-          region: country.region,
-          flags: country.flags,
         }));
-        setCountryData(formattedData);
+        const othersData = {
+          name: "Others",
+          population: otherCountriesData.reduce(
+            (total, country) => total + country.population,
+            0
+          ),
+          area: otherCountriesData.reduce(
+            (total, country) => total + country.area,
+            0
+          ),
+        };
+        const totalWorldPopulation = data.reduce(
+          (total, country) => total + country.population,
+          0
+        );
+        setWorldPopulation(totalWorldPopulation);
+        setCountryData([
+          ...formattedData,
+          othersData,
+          { name: "World", population: totalWorldPopulation },
+        ]);
       } catch (error) {
         toast.error("Something went wrong");
       }
@@ -82,15 +102,6 @@ const Home = () => {
     angleField: "area",
     colorField: "name",
     radius: 0.8,
-    label: {
-      type: "spider",
-      labelHeight: 28,
-    },
-    interactions: [{ type: "element-selected" }, { type: "element-active" }],
-    legend: {
-      layout: "vertical",
-      position: "right",
-    },
   };
 
   return (
@@ -98,8 +109,8 @@ const Home = () => {
       <div className="fixed top-4 left-4 z-50">
         <Dropdown />
       </div>
-      <div className="flex flex-col items-center">
-        <h2 className="text-3xl text-center text-steel-blue font-semibold mt-10">
+      <div className="text-center">
+        <h2 className="text-3xl text-steel-blue font-semibold pt-10">
           Dashboard
         </h2>
       </div>
@@ -114,6 +125,38 @@ const Home = () => {
           <h2 className="text-2xl font-bold mb-4">Area Distribution</h2>
           <Pie {...areaPieConfig} />
         </Card>
+      </div>
+      <div className="p-5 mt-4">
+        <h2 className="text-3xl font-semibold mb-5">
+          World Population Overview
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+          {countryData.map((country) => (
+            <Card
+              key={country.name}
+              className="p-1 border border-gray-200 rounded-md hover:shadow-lg transition duration-300"
+            >
+              <h2 className="text-2xl font-bold mb-4 text-center text-steel-blue">
+                {country.name}
+              </h2>
+              <div className="flex justify-center items-center mb-5 text-xs">
+                <Statistic
+                  value={country.population}
+                  prefix={<TeamOutlined />}
+                  className="text-xs"
+                />
+              </div>
+              <div className="flex justify-center items-center">
+                <Progress
+                  type="dashboard"
+                  percent={Math.round(
+                    (country.population / worldPopulation) * 100
+                  )}
+                />
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );

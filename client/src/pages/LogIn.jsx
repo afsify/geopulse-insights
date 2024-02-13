@@ -9,8 +9,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import AuthCard from "../components/auth/AuthCard";
 import { getUser } from "../api/services/userService";
 import { userLogin } from "../api/services/userService";
-import { showLoading, hideLoading } from "../utils/alertSlice";
 import DemoAccount from "../components/user/DemoAccount";
+import { showLoading, hideLoading } from "../utils/alertSlice";
 
 function LogIn() {
   const navigate = useNavigate();
